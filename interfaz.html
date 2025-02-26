@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glow Up - Cuidado Facial y Maquillaje</title>
+    <link rel="stylesheet" href="estilo.css"> <!-- Enlaza tu archivo CSS aquí -->
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Glow Up</h1>
+            <p>Tu guía para el cuidado facial y maquillaje natural</p>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#rutinas">Rutinas</a></li>
+                    <li><a href="#productos">Productos</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                    <li id="auth-button">
+                        <!-- El botón cambia dinámicamente entre "Iniciar Sesión" y "Cerrar Sesión" -->
+                        <a href="inicio de sesion.html" class="btn-login" id="login-button">Iniciar Sesión</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h2>Bienvenido a Glow Up</h2>
+            <p>Descubre el poder de los productos naturales para una piel radiante y saludable.</p>
+            <a href="#rutinas" class="btn">Explora nuestras rutinas</a>
+        </div>
+    </section>
+
+    <section id="rutinas" class="section-light">
+        <h2>Rutinas Personalizadas</h2>
+        <p>Encuentra la rutina perfecta para tu tipo de piel.</p>
+        <div class="grid-container">
+            <div class="grid-item">
+                <h3>Piel Grasa</h3>
+                <p>Controla el exceso de grasa y minimiza los poros.</p>
+                <a href="#piel-grasa" class="btn">Ver Rutina</a>
+            </div>
+            <div class="grid-item">
+                <h3>Piel Seca</h3>
+                <p>Hidrata y nutre tu piel profundamente.</p>
+                <a href="#piel-seca" class="btn">Ver Rutina</a>
+            </div>
+            <div class="grid-item">
+                <h3>Piel Mixta</h3>
+                <p>Equilibra las zonas grasas y secas.</p>
+                <a href="#piel-mixta" class="btn">Ver Rutina</a>
+            </div>
+            <div class="grid-item">
+                <h3>Piel Sensible</h3>
+                <p>Cuida tu piel con productos suaves y naturales.</p>
+                <a href="#piel-sensible" class="btn">Ver Rutina</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="productos" class="section-dark">
+        <h2>Productos Naturales</h2>
+        <p>Explora nuestra selección de productos eco-friendly.</p>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQinIuCw4qv1gco52ehXETaLn3LwaNZk-YG5w&s" alt="Crema Hidratante">
+                <h3>Crema Hidratante</h3>
+                <p>Ideal para pieles secas y sensibles.</p>
+            </div>
+            <div class="product-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZuJ1jmNeQjU-9dvVOW7d0HvnQ-ty2Uw1jxQ&s" alt="Base Mineral">
+                <h3>Base Mineral</h3>
+                <p>Ligera y perfecta para todo tipo de piel.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="blog" class="section-light">
+        <h2>Blog</h2>
+        <div class="blog-grid">
+            <article class="blog-card">
+                <h3>Beneficios de los Ingredientes Naturales</h3>
+                <p>Aprende cómo los ingredientes naturales pueden transformar tu piel.</p>
+            </article>
+            <article class="blog-card">
+                <h3>Ejercicios Faciales para una Piel Joven</h3>
+                <p>Descubre técnicas simples para tonificar tu rostro.</p>
+            </article>
+        </div>
+    </section>
+
+    <section id="contacto" class="section-dark">
+        <h2>Contacto</h2>
+        <p>¿Tienes preguntas? ¡Escríbenos!</p>
+        <form action="#" method="post">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+            <label for="email">Correo electrónico:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="mensaje">Mensaje:</label>
+            <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Glow Up. Todos los derechos reservados.</p>
+        <p>Síguenos en redes sociales: <a href="#">Instagram</a> | <a href="#">Facebook</a></p>
+    </footer>
+
+    <script>
+        // Función para verificar si el usuario está autenticado
+        function estaAutenticado() {
+            const token = localStorage.getItem("auth-token"); // Verifica si hay un token en el localStorage
+            return token !== null; // Devuelve true si el token existe
+        }
+
+        // Función para actualizar el botón de autenticación
+        function actualizarBotonAuth() {
+            const authButton = document.getElementById("auth-button");
+
+            if (estaAutenticado()) {
+                // Si el usuario está autenticado, muestra "Cerrar Sesión"
+                authButton.innerHTML = `<a href="#" class="btn-login" id="logout-button">Cerrar Sesión</a>`;
+                const logoutButton = document.getElementById("logout-button");
+
+                // Manejar el cierre de sesión
+                logoutButton.addEventListener("click", (event) => {
+                    event.preventDefault(); // Evita que el enlace redirija
+                    localStorage.removeItem("auth-token"); // Elimina el token
+                    window.location.href = "interfaz.html"; // Recarga la página
+                });
+            } else {
+                // Si el usuario no está autenticado, muestra "Iniciar Sesión"
+                authButton.innerHTML = `<a href="inicio de sesion.html" class="btn-login" id="login-button">Iniciar Sesión</a>`;
+            }
+        }
+
+        // Actualizar el botón al cargar la página
+        document.addEventListener("DOMContentLoaded", actualizarBotonAuth);
+    </script>
+</body>
+</html>
